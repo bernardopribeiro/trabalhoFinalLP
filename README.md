@@ -1,4 +1,4 @@
-# trabalhoFinalLP
+# Trabalho Final Linguagens de Programação
 Projeto Final da unidade curricular de Linguagens de Programação 2019/2020
 
 Trabalho realizado pôr:
