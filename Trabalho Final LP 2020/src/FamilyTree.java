@@ -11,8 +11,9 @@ public class FamilyTree implements IFamilyTree {
 
 	private No raiz;
 
-	public FamilyTree() {
+	public FamilyTree(No raiz) {
 		// TODO Auto-generated constructor stub
+		this.raiz = raiz;
 	}
 
 	@Override
