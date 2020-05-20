@@ -39,7 +39,7 @@ public class FamilyTree implements IFamilyTree {
 		int resposta = 0;
 
 		if (raiz != null) {
-			if (raiz.getDir() != null) {
+			if (raiz.getDir() != null && raiz.getEsq() != null) {
 				resposta = maisVelho(raiz.getDir());
 				resposta = maisVelho(raiz.getEsq());
 				resposta = raiz.getElemento().getIdade();
@@ -84,4 +84,42 @@ public class FamilyTree implements IFamilyTree {
 			return 1 + Math.max(alturaArvore(raiz.getEsq()), alturaArvore(raiz.getDir()));
 		}
 	}
+
+	@Override
+	public int larguraNivel(int nivel) {
+		return larguraNivel(raiz, nivel);
+
+	}
+
+	public int larguraNivel(No raiz, int nivel) {
+		if (raiz == null) {
+			return 0;
+		}
+		if (nivel == 1) {
+			return 1;
+		}
+		return larguraNivel(raiz.getEsq(), nivel - 1) + larguraNivel(raiz.getDir(), nivel - 1);
+	}
+
+	@Override
+	public boolean existe(String nome, int idade) {
+		return existe(raiz, idade, nome);
+	}
+
+	private boolean existe(No raiz, int idade, String nome) {
+		if (raiz == null)
+			return false;
+
+		if (raiz.getElemento().getIdade() == idade && raiz.getElemento().getNome().equals(nome))
+			return true;
+
+		boolean res1 = existe(raiz.getEsq(), idade, nome);
+		if (res1)
+			return true;
+
+		boolean res2 = existe(raiz.getDir(), idade, nome);
+
+		return res2;
+	}
+
 }

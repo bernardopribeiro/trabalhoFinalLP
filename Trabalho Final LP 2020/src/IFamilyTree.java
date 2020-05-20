@@ -17,4 +17,8 @@ public interface IFamilyTree {
 
 	public int alturaArvore();
 
+	public int larguraNivel(int nivel);
+
+	public boolean existe(String nome, int idade);
+
 }
