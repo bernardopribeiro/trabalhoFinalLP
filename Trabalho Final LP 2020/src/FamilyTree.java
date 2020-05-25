@@ -11,7 +11,7 @@ public class FamilyTree implements IFamilyTree {
 
 	private No raiz;
 
-	public FamilyTree(No raiz) {
+	public FamilyTree() {
 		// TODO Auto-generated constructor stub
 		this.raiz = raiz;
 	}
@@ -85,20 +85,19 @@ public class FamilyTree implements IFamilyTree {
 		}
 	}
 
-	@Override
-	public int larguraNivel(int nivel) {
-		return larguraNivel(raiz, nivel);
+	public int larguraGeracao(int nivel) {
+		return larguraGeracao(raiz, nivel);
 
 	}
 
-	public int larguraNivel(No raiz, int nivel) {
+	public int larguraGeracao(No raiz, int nivel) {
 		if (raiz == null) {
 			return 0;
 		}
 		if (nivel == 1) {
 			return 1;
 		}
-		return larguraNivel(raiz.getEsq(), nivel - 1) + larguraNivel(raiz.getDir(), nivel - 1);
+		return larguraGeracao(raiz.getEsq(), nivel - 1) + larguraGeracao(raiz.getDir(), nivel - 1);
 	}
 
 	@Override
@@ -120,6 +119,61 @@ public class FamilyTree implements IFamilyTree {
 		boolean res2 = existe(raiz.getDir(), idade, nome);
 
 		return res2;
+	}
+
+	@Override
+	public void listarAteGeracao(int nivel) {
+		listarAteGeracao(raiz, nivel);
+	}
+
+	private void listarAteGeracao(No raiz, int nivel) {
+		if (nivel > 0) {
+			System.out.print("\n" + raiz.getElemento().toString() + " ");
+			listarAteGeracao(raiz.getEsq(), nivel - 1);
+			listarAteGeracao(raiz.getDir(), nivel - 1);
+		}
+	}
+
+	@Override
+	public void listarGeracao(int nivel) {
+		listarGeracao(raiz, nivel);
+	}
+
+	private void listarGeracao(No raiz, int nivel) {
+		if (raiz != null) {
+			if (nivel != 1) {
+				listarGeracao(raiz.getEsq(), nivel - 1);
+				listarGeracao(raiz.getDir(), nivel - 1);
+			} else {
+				System.out.print("\n" + raiz.getElemento().toString() + " ");
+			}
+		}
+	}
+
+	@Override
+	public void inserir(int id, String nome, int idade) throws IllegalArgumentException {
+		if (raiz != null)
+			inserir(raiz, id, nome, idade);
+		else
+			raiz = new No(new Elemento(id, nome, idade));
+	}
+
+	public void inserir(No raiz, int id, String nome, int idade) {
+		if (id < raiz.getElemento().getId()) {
+			if (raiz.getEsq() != null) {
+				inserir(raiz.getEsq(), id, nome, idade);
+			} else {
+				raiz.setEsq(new No(new Elemento(id, nome, idade)));
+			}
+		} else if (id > raiz.getElemento().getId()) {
+			if (raiz.getDir() != null) {
+				inserir(raiz.getDir(), id, nome, idade);
+			} else {
+				raiz.setDir(new No(new Elemento(id, nome, idade)));
+			}
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 }

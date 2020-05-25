@@ -5,7 +5,14 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		IFamilyTree f = new FamilyTree(family());
+		IFamilyTree f = new FamilyTree();
+
+		f.inserir(40, "Rainha Elizabeth ll", 94);
+		f.inserir(20, "Charles", 71);
+		f.inserir(60, "Anne", 69);
+		f.inserir(10, "William", 37);
+		f.inserir(30, "Harry", 35);
+		f.inserir(70, "Peter", 42);
 
 		menu(f);
 
@@ -37,6 +44,14 @@ public class Main {
 			System.exit(0);
 			break;
 		case 1:
+			System.out.println("\nDiga todas as informações necessarias.\n");
+			System.out.print("\nID -> ");
+			int idInserir = scanner.nextInt();
+			System.out.print("Nome -> ");
+			String nomeInserir = scanner.next();
+			System.out.print("Idade -> ");
+			int idadeInserir = scanner.nextInt();
+			f.inserir(idInserir, nomeInserir, idadeInserir);
 			menu(f);
 			break;
 		case 2:
@@ -60,7 +75,7 @@ public class Main {
 			System.out.println("Escolha uma geração de [0 a " + f.alturaArvore() + "]");
 			System.out.print("\nQual a geração? ");
 			int larguraNivel = scanner.nextInt();
-			System.out.println("\nA geração " + larguraNivel + " têm " + f.larguraNivel(larguraNivel) + " membros.");
+			System.out.println("\nA geração " + larguraNivel + " têm " + f.larguraGeracao(larguraNivel) + " membros.");
 			menu(f);
 			break;
 		case 7:
@@ -69,11 +84,15 @@ public class Main {
 			String boolNome = scanner.next();
 			System.out.print("\nQual idade? \n");
 			int boolIdade = scanner.nextInt();
-			System.out.println("\nExiste? " +f.existe(boolNome,boolIdade));
+			System.out.println("\nExiste? " + f.existe(boolNome, boolIdade));
 			menu(f);
 			break;
 		case 8:
-
+			System.out.println("\nEscolha até a geração " + f.alturaArvore());
+			System.out.print("\nDeseja ver que geração? ");
+			int listarNivel = scanner.nextInt();
+			f.listarGeracao(listarNivel);
+			System.out.println("\n");
 			menu(f);
 			break;
 		case 9:
@@ -97,29 +116,11 @@ public class Main {
 			menu(f);
 			break;
 		case 14:
-			
+
 			menu(f);
 			break;
 		default:
 		}
 	}
 
-	public static No family() {
-		No raiz;
-		No no1 = new No(new Elemento(40, "Rainha Elizabeth ll", 94));
-		No no2 = new No(new Elemento(20, "Charles", 71));
-		No no3 = new No(new Elemento(50, "Anne", 69));
-		No no4 = new No(new Elemento(10, "William", 37));
-		No no5 = new No(new Elemento(30, "Harry", 35));
-		No no6 = new No(new Elemento(60, "Peter", 42));
-
-		no4.setEsq(no2);
-		no4.setDir(no6);
-		no2.setEsq(no1);
-		no2.setDir(no3);
-		no6.setEsq(no5);
-
-		raiz = no4;
-		return raiz;
-	}
 }

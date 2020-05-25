@@ -17,8 +17,14 @@ public interface IFamilyTree {
 
 	public int alturaArvore();
 
-	public int larguraNivel(int nivel);
+	public int larguraGeracao(int nivel);
 
 	public boolean existe(String nome, int idade);
+
+	public void listarAteGeracao(int nivel);
+
+	public void listarGeracao(int nivel);
+
+	void inserir(int id, String nome, int idade) throws IllegalArgumentException;
 
 }
