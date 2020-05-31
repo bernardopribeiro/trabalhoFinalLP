@@ -8,6 +8,8 @@
  */
 
 public interface IFamilyTree {
+	
+	public void inserir(int id, String nome, int idade) throws IllegalArgumentException;
 
 	public int numeroElementos();
 
@@ -21,10 +23,18 @@ public interface IFamilyTree {
 
 	public boolean existe(String nome, int idade);
 
-	public void listarAteGeracao(int nivel);
+	public void listarAteGeracao(int listarAteGeracao);
 
 	public void listarGeracao(int nivel);
 
-	void inserir(int id, String nome, int idade) throws IllegalArgumentException;
+	public String preOrder();
+
+	public String inOrder();
+
+	public String posOrder();
+
+	public void listarNiveis();
+
+		
 
 }

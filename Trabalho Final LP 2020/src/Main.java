@@ -87,7 +87,15 @@ public class Main {
 			System.out.println("\nExiste? " + f.existe(boolNome, boolIdade));
 			menu(f);
 			break;
+			
 		case 8:
+			System.out.println("\nEscolha até a geração " + f.alturaArvore());
+			System.out.print("\nDeseja ver até que geração? \n");
+			int listarAteGeracao = scanner.nextInt();
+			f.listarAteGeracao(listarAteGeracao);
+			menu(f);
+			break;
+		case 9:
 			System.out.println("\nEscolha até a geração " + f.alturaArvore());
 			System.out.print("\nDeseja ver que geração? ");
 			int listarNivel = scanner.nextInt();
@@ -95,24 +103,21 @@ public class Main {
 			System.out.println("\n");
 			menu(f);
 			break;
-		case 9:
-
-			menu(f);
-			break;
 		case 10:
-
+			System.out.println("\nPre-Order da Familia: " + f.preOrder() + "\n");
 			menu(f);
 			break;
 		case 11:
-
+			System.out.println("\nIn-Order da Familia: " + f.inOrder() + "\n");
 			menu(f);
 			break;
 		case 12:
-
+			System.out.println("\nPos-Order da Familia: " + f.posOrder() + "\n");
 			menu(f);
 			break;
 		case 13:
-
+			System.out.println("\nListar cada geração ordenada. \n");
+			f.listarNiveis();
 			menu(f);
 			break;
 		case 14:
