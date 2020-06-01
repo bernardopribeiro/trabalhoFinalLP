@@ -1,4 +1,4 @@
-import TesteTrabalho.No;
+
 
 /*
 	Tema de Trabalho: Arvore Geneologica
@@ -166,17 +166,22 @@ public class FamilyTree implements IFamilyTree {
 	/*===================================================LISTAR ATE GERACAO======================================================*/
 
 	@Override
-	public void listarAteGeracao(int listarAteGeracao) {
-		listarAteGeracao(raiz, listarAteGeracao);
+	public void listarAteGeracao(int nivel) {
+		listarAteGeracao(raiz, nivel);
 	}
-
-	private void listarAteGeracao(No raiz, int listarAteGeracao) {
-		if (listarAteGeracao > 0) {
-			System.out.print("\n" + raiz.getElemento().toString() + " ");
-			listarAteGeracao(raiz.getEsq(), listarAteGeracao - 1);
-			listarAteGeracao(raiz.getDir(), listarAteGeracao - 1);
+	
+	public void listarAteGeracao(No raiz, int nivel) {
+		
+		if(raiz == null) {
+		
+			return;
+		} else if(nivel >= 1) {
+			listarAteGeracao(raiz.getEsq(), nivel -1);
+			System.out.println(raiz.getElemento().toString());
+			listarAteGeracao(raiz.getDir(), nivel -1);
 		}
 	}
+	
 	
 	/*===================================================LISTAR GERACAO======================================================*/
 
