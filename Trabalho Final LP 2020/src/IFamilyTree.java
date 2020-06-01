@@ -35,6 +35,8 @@ public interface IFamilyTree {
 
 	public void listarNiveis();
 
+	public String listarLado(String ladoImprimir);
+
 		
 
 }

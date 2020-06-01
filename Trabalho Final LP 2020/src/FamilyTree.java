@@ -1,3 +1,5 @@
+import TesteTrabalho.No;
+
 /*
 	Tema de Trabalho: Arvore Geneologica
 
@@ -283,6 +285,35 @@ public class FamilyTree implements IFamilyTree {
 			System.out.println("");
 		}
 	}
+	
+	/*===================================================LISTAR POR LADO======================================================*/
+	
+	@Override
+	public String listarLado(String lado) {
+		if (raiz == null) {
+			return "Arvore Vazia";
+		} else {
+			return listarLado(raiz,lado);
+		}
+	}
+
+	private String listarLado(No raiz, String lado) {
+
+		String resposta = "";
+
+		if (raiz != null) {
+			resposta += "\n" + raiz.getElemento().toString() + " ";
+		}
+		if (raiz.getEsq() != null && lado.equals("E")) {
+			resposta += listarLado(raiz.getEsq(),lado);
+		}
+		if (raiz.getDir() != null && lado.equals("E")) {
+			resposta += listarLado(raiz.getDir(),lado);
+		}
+
+		return resposta;
+	}
+	
 	
 	/*===================================================REMOVER======================================================*/
 
