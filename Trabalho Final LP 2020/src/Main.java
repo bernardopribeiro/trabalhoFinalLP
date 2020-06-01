@@ -34,7 +34,6 @@ public class Main {
 		System.out.println("11 -> Em ordem da Família:");
 		System.out.println("12 -> Pos Ordem da Família:");
 		System.out.println("13 -> Listar nível da ordem da família");
-		System.out.println("14 -> Listar lado da arvore");
 		System.out.println("15 -> Remover Familiar");
 		System.out.println("0 -> Sair");
 		System.out.print("Escreva aqui a opção: ");
@@ -120,12 +119,8 @@ public class Main {
 			f.listarNiveis();
 			menu(f);
 			break;
+		
 		case 14:
-			System.out.println("Qual lado pretendes imprimir? (E) ou (D)");
-			System.out.print("Lado -> ");
-			String ladoImprimir = scanner.next();
-			System.out.println(f.listarLado(ladoImprimir));
-		case 15:
 				//METODO REMOVER
 			menu(f);
 			break;
