@@ -1,4 +1,4 @@
-
+import TesteTrabalho.No;
 
 /*
 	Tema de Trabalho: Arvore Geneologica
@@ -295,4 +295,88 @@ public class FamilyTree implements IFamilyTree {
 	
 	/*===================================================REMOVER======================================================*/
 
+	@Override
+	public void remover(int id) {
+		remover(raiz, id);
+	}
+
+	private No remover(No raiz, int id) {
+
+		No pai = null;
+
+		No atual = raiz;
+
+		while (atual != null && atual.getElemento().getId() != id) {
+
+			pai = atual;
+
+			if (id < atual.getElemento().getId()) {
+				atual = atual.getEsq();
+			} else {
+				atual = atual.getDir();
+			}
+		}
+
+		if (atual == null) {
+			return raiz;
+		}
+
+		if (atual.getEsq() == null && atual.getDir() == null) {
+
+			if (atual != raiz) {
+				if (pai.getEsq() == atual) {
+					pai.setEsq(null);
+				} else {
+					pai.setDir(null);
+				}
+			}
+
+			else {
+				raiz = null;
+			}
+		}
+
+		else if (atual.getEsq() != null && atual.getDir() != null) {
+
+			No sucessor = minimoID(atual.getDir());
+
+			int value = sucessor.getElemento().getId();
+			String name = sucessor.getElemento().getNome();
+			int age = sucessor.getElemento().getIdade();
+
+			remover(raiz, sucessor.getElemento().getId());
+
+			atual.getElemento().setId(value);
+			atual.getElemento().setNome(name);
+			atual.getElemento().setIdade(age);
+		}
+
+		else {
+
+			No filho = (atual.getEsq() != null) ? atual.getEsq() : atual.getDir();
+
+			if (atual != raiz) {
+				if (atual == pai.getEsq()) {
+					pai.setEsq(filho);
+				} else {
+					pai.setDir(filho);
+				}
+			}
+
+			else {
+				raiz = filho;
+			}
+		}
+
+		return raiz;
+	}
+
+	private No minimoID(No atual) {
+		while (atual.getEsq() != null) {
+			atual = atual.getEsq();
+		}
+		return atual;
+	}
+
+	
 }

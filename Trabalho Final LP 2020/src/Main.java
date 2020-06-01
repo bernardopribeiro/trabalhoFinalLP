@@ -121,9 +121,11 @@ public class Main {
 			break;
 		
 		case 14:
-				//METODO REMOVER
+			System.out.println("\nDiga todas as informações necessarias.\n");
+			System.out.print("\nID -> ");
+			int idRemover = scanner.nextInt();
+			f.remover(idRemover);
 			menu(f);
-			break;
 		default:
 		}
 	}

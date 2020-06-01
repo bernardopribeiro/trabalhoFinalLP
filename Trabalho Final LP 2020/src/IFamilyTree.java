@@ -35,6 +35,8 @@ public interface IFamilyTree {
 
 	public void listarNiveis();
 
+	public void remover(int id);
+
 
 
 		
