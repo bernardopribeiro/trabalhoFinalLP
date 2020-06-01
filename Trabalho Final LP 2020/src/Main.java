@@ -87,7 +87,6 @@ public class Main {
 			System.out.println("\nExiste? " + f.existe(boolNome, boolIdade));
 			menu(f);
 			break;
-			
 		case 8:
 			System.out.println("\nEscolha até a geração " + f.alturaArvore());
 			System.out.print("\nDeseja ver até que geração? \n");
