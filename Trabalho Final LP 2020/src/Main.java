@@ -134,7 +134,7 @@ public class Main {
 			f.remover(idRemover);
 			menu(f);
 			break;
-
+//~Teste
 		default:
 		}
 	}
