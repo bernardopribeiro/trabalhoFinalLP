@@ -8,7 +8,7 @@
  */
 
 public interface IFamilyTree {
-	
+
 	public void inserir(int id, String nome, int idade) throws IllegalArgumentException;
 
 	public int numeroElementos();
@@ -37,8 +37,6 @@ public interface IFamilyTree {
 
 	public void remover(int id);
 
-
-
-		
+	public String listarLado(String lado);
 
 }

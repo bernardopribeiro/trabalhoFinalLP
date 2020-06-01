@@ -33,8 +33,9 @@ public class Main {
 		System.out.println("10 -> Pré ordem da Família:");
 		System.out.println("11 -> Em ordem da Família:");
 		System.out.println("12 -> Pos Ordem da Família:");
-		System.out.println("13 -> Listar nível da ordem da família");
-		System.out.println("15 -> Remover Familiar");
+		System.out.println("13 -> Listar nível da ordem da família:");
+		System.out.println("14 -> Listar Lado:");
+		System.out.println("15 -> Remover Familiar pôr ID:");
 		System.out.println("0 -> Sair");
 		System.out.print("Escreva aqui a opção: ");
 		int choice = scanner.nextInt();
@@ -119,13 +120,21 @@ public class Main {
 			f.listarNiveis();
 			menu(f);
 			break;
-		
 		case 14:
+			System.out.println("\nQual o lado da familia que deseja ver. (E -> Esquerdo, D -> Direito) \n");
+			System.out.print("\nLetra -> ");
+			String letra = scanner.next();
+			System.out.println(f.listarLado(letra));
+			menu(f);
+			break;
+		case 15:
 			System.out.println("\nDiga todas as informações necessarias.\n");
 			System.out.print("\nID -> ");
 			int idRemover = scanner.nextInt();
 			f.remover(idRemover);
 			menu(f);
+			break;
+
 		default:
 		}
 	}

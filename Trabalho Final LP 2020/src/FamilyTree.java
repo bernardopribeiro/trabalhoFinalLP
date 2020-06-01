@@ -1,4 +1,3 @@
-import TesteTrabalho.No;
 
 /*
 	Tema de Trabalho: Arvore Geneologica
@@ -14,12 +13,14 @@ public class FamilyTree implements IFamilyTree {
 
 	public FamilyTree() {
 		// TODO Auto-generated constructor stub
-	
+
 	}
 
-	
-	/*===================================================INSERIR======================================================*/
-	
+	/*
+	 * ===================================================INSERIR===================
+	 * ===================================
+	 */
+
 	@Override
 	public void inserir(int id, String nome, int idade) throws IllegalArgumentException {
 		if (raiz != null)
@@ -46,8 +47,11 @@ public class FamilyTree implements IFamilyTree {
 		}
 	}
 
-	/*===================================================NUMERO DE ELEMENTOS======================================================*/
-	
+	/*
+	 * ===================================================NUMERO DE
+	 * ELEMENTOS======================================================
+	 */
+
 	@Override
 	public int numeroElementos() {
 		return numeroElementos(raiz);
@@ -60,8 +64,11 @@ public class FamilyTree implements IFamilyTree {
 			return 1 + numeroElementos(raiz.getEsq()) + numeroElementos(raiz.getDir());
 		}
 	}
-	
-	/*===================================================MAIS VELHO======================================================*/
+
+	/*
+	 * ===================================================MAIS
+	 * VELHO======================================================
+	 */
 
 	@Override
 	public int maisVelho() {
@@ -85,8 +92,11 @@ public class FamilyTree implements IFamilyTree {
 		return Integer.MIN_VALUE;
 
 	}
-	
-	/*===================================================MAIS NOVO======================================================*/
+
+	/*
+	 * ===================================================MAIS
+	 * NOVO======================================================
+	 */
 
 	public int maisNovo() {
 		return maisNovo(raiz);
@@ -107,8 +117,11 @@ public class FamilyTree implements IFamilyTree {
 			return Integer.MAX_VALUE;
 		}
 	}
-	
-	/*===================================================ALTURA ARVORE======================================================*/
+
+	/*
+	 * ===================================================ALTURA
+	 * ARVORE======================================================
+	 */
 
 	@Override
 	public int alturaArvore() {
@@ -127,8 +140,11 @@ public class FamilyTree implements IFamilyTree {
 		return larguraGeracao(raiz, nivel);
 
 	}
-	
-	/*===================================================LARGURA GERACAO======================================================*/
+
+	/*
+	 * ===================================================LARGURA
+	 * GERACAO======================================================
+	 */
 
 	public int larguraGeracao(No raiz, int nivel) {
 		if (raiz == null) {
@@ -139,8 +155,11 @@ public class FamilyTree implements IFamilyTree {
 		}
 		return larguraGeracao(raiz.getEsq(), nivel - 1) + larguraGeracao(raiz.getDir(), nivel - 1);
 	}
-	
-	/*===================================================EXISTE======================================================*/
+
+	/*
+	 * ===================================================EXISTE====================
+	 * ==================================
+	 */
 
 	@Override
 	public boolean existe(String nome, int idade) {
@@ -162,28 +181,33 @@ public class FamilyTree implements IFamilyTree {
 
 		return res2;
 	}
-	
-	/*===================================================LISTAR ATE GERACAO======================================================*/
+
+	/*
+	 * ===================================================LISTAR ATE
+	 * GERACAO======================================================
+	 */
 
 	@Override
 	public void listarAteGeracao(int nivel) {
 		listarAteGeracao(raiz, nivel);
 	}
-	
+
 	public void listarAteGeracao(No raiz, int nivel) {
-		
-		if(raiz == null) {
-		
+
+		if (raiz == null) {
+
 			return;
-		} else if(nivel >= 1) {
-			listarAteGeracao(raiz.getEsq(), nivel -1);
+		} else if (nivel >= 1) {
+			listarAteGeracao(raiz.getEsq(), nivel - 1);
 			System.out.println(raiz.getElemento().toString());
-			listarAteGeracao(raiz.getDir(), nivel -1);
+			listarAteGeracao(raiz.getDir(), nivel - 1);
 		}
 	}
-	
-	
-	/*===================================================LISTAR GERACAO======================================================*/
+
+	/*
+	 * ===================================================LISTAR
+	 * GERACAO======================================================
+	 */
 
 	@Override
 	public void listarGeracao(int nivel) {
@@ -200,8 +224,11 @@ public class FamilyTree implements IFamilyTree {
 			}
 		}
 	}
-	
-	/*===================================================PRE-ORDEM======================================================*/
+
+	/*
+	 * ===================================================PRE-ORDEM=================
+	 * =====================================
+	 */
 
 	@Override
 	public String preOrder() {
@@ -229,8 +256,11 @@ public class FamilyTree implements IFamilyTree {
 		return resposta;
 	}
 
-	/*===================================================IN-ORDER======================================================*/
-	
+	/*
+	 * ===================================================IN-ORDER==================
+	 * ====================================
+	 */
+
 	@Override
 	public String inOrder() {
 		if (raiz == null) {
@@ -251,8 +281,11 @@ public class FamilyTree implements IFamilyTree {
 		}
 		return resposta;
 	}
-	
-	/*===================================================POS-ORDER======================================================*/
+
+	/*
+	 * ===================================================POS-ORDER=================
+	 * =====================================
+	 */
 
 	@Override
 	public String posOrder() {
@@ -274,8 +307,8 @@ public class FamilyTree implements IFamilyTree {
 		}
 		return resposta;
 	}
-	
-	/*===================================================LISTAR POR NIVEL======================================================*/
+
+	// ===================LISTAR POR NIVEL ===================
 
 	@Override
 	public void listarNiveis() {
@@ -290,10 +323,39 @@ public class FamilyTree implements IFamilyTree {
 			System.out.println("");
 		}
 	}
-	
-	
-	
-	/*===================================================REMOVER======================================================*/
+
+	// ===================LISTAR-LADO===================	 
+
+	@Override
+	public String listarLado(String lado) {
+		if (raiz == null) {
+			return "Arvore Vazia";
+		} else {
+			return listarLado(raiz, lado);
+		}
+	}
+
+	private String listarLado(No raiz, String lado) {
+
+		String resposta = "";
+
+		if (raiz != null) {
+			resposta += "\n" + raiz.getElemento().toString() + " ";
+		}
+		if (raiz.getEsq() != null && lado.equals("E")) {
+			resposta += preOrder(raiz.getEsq());
+		}
+		if (raiz.getDir() != null && lado.equals("D")) {
+			resposta += preOrder(raiz.getDir());
+		}
+
+		return resposta;
+	}
+
+	/*
+	 * ===================================================REMOVER===================
+	 * ===================================
+	 */
 
 	@Override
 	public void remover(int id) {
@@ -378,5 +440,4 @@ public class FamilyTree implements IFamilyTree {
 		return atual;
 	}
 
-	
 }
